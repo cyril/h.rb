@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# encoding: UTF-8
+
+require 'h'
+
+h = H::Generator.new
+
+if ARGV.first.nil?
+  puts h.prompt
+else
+  puts h.input ARGV.first
+end
