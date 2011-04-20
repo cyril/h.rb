@@ -1,6 +1,6 @@
 require 'digest'
 require 'highline/import'
-require 'yaml'
+require 'psych'
 
 module H
   class Generator
@@ -9,7 +9,7 @@ module H
     def initialize
       unless File.exists?(CONF_PATH)
         File.open(CONF_PATH, 'w') do |f|
-          YAML.dump({ 'encryption' => 'SHA1',
+          Psych.dump({ 'encryption' => 'SHA1',
                       'static_key' => 'foobar',
                       'max_length' => 15,
                       'radix'      => 36 }, f)
@@ -18,7 +18,7 @@ module H
         File.chmod(0600, CONF_PATH)
       end
 
-      @params = YAML::load_file(CONF_PATH)
+      @params = Psych.load_file(CONF_PATH)
       @params.freeze
     end
 
