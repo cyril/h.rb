@@ -6,19 +6,20 @@ module H
   class Generator
     CONF_PATH = File.join(File.expand_path('~'), '.h')
 
-    def initialize
+    def initialize(options = {})
       unless File.exists?(CONF_PATH)
         File.open(CONF_PATH, 'w') do |f|
           Psych.dump({ 'encryption' => 'SHA1',
-                      'static_key' => 'foobar',
-                      'max_length' => 15,
-                      'radix'      => 36 }, f)
+                       'static_key' => 'foobar',
+                       'max_length' => 15,
+                       'radix'      => 36 }, f)
         end
 
         File.chmod(0600, CONF_PATH)
       end
 
       @params = Psych.load_file(CONF_PATH)
+      @params.update(options)
       @params.freeze
     end
 
