@@ -1,4 +1,4 @@
-= H
+= H ![travis-ci](http://travis-ci.org/cyril/h.png)
 
 == Overview
 
