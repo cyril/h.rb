@@ -1,4 +1,4 @@
-require 'test_helper'
+require_relative '_test_helper'
 
 class HTest < MiniTest::Unit::TestCase
   def setup

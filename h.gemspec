@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'yaml'
+
 Gem::Specification.new do |s|
   s.name        = "h"
   s.version     = YAML.load_file("VERSION.yml").values.join('.')

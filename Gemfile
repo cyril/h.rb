@@ -1,8 +1,10 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
-# Specify your gem's dependencies in h.gemspec
+ruby '2.0.0'
+
 gemspec
 
 gem 'rake'
 gem 'highline'
 gem 'minitest'
+gem 'coveralls', require: false

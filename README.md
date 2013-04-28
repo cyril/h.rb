@@ -1,4 +1,4 @@
-H ![travis-ci](https://secure.travis-ci.org/cyril/h.png)
+H
 =
 
 Overview
@@ -69,5 +69,12 @@ And now a useless test, with conventional parameters. You can Google the result.
     $ echo "{max_length: 40, radix: 16, encryption: SHA1, static_key: ''}" > ~/.h
     $ h "The quick brown fox jumps over the lazy dog"
     2fd4e1c67a2d28fced849ee1bb76e7391b93eb12
+
+Code Status
+-----------
+
+* [![Build Status](https://secure.travis-ci.org/cyril/h.png)](http://travis-ci.org/cyril/h)
+* [![Coverage Status](https://coveralls.io/repos/cyril/h/badge.png)](https://coveralls.io/r/cyril/h)
+* [![Dependencies Status](https://gemnasium.com/cyril/h.png?travis)](https://gemnasium.com/cyril/h)
 
 Copyright (c) 2011 Cyril Wack, released under the ISC license
