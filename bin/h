@@ -4,8 +4,14 @@ require 'h'
 
 h = H::Generator.new
 
-if ARGV.first.nil?
-  puts h.prompt
+result = if ARGV.first
+  if ARGV[1]
+    h.input ARGV[0], ARGV[1].to_i
+  else
+    h.input ARGV[0]
+  end
 else
-  puts h.input ARGV.first
+  h.prompt
 end
+
+puts result

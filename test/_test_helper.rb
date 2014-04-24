@@ -1,4 +1,4 @@
 require 'h'
 require 'minitest/autorun'
-require 'coveralls'
-Coveralls.wear!
+
+ENV['STATIC_KEY'] = 'secret-key-here'

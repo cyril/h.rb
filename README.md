@@ -74,7 +74,6 @@ Code Status
 -----------
 
 * [![Build Status](https://secure.travis-ci.org/cyril/h.png)](http://travis-ci.org/cyril/h)
-* [![Coverage Status](https://coveralls.io/repos/cyril/h/badge.png)](https://coveralls.io/r/cyril/h)
 * [![Dependencies Status](https://gemnasium.com/cyril/h.png?travis)](https://gemnasium.com/cyril/h)
 
 Copyright (c) 2011 Cyril Wack, released under the ISC license
