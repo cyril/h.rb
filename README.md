@@ -14,32 +14,30 @@ Small tool that generates salted hashes, scented with the SHA2 function.
 
 ## Configuration
 
-H reads its configuration from the `.env` file at initialization.  This file, which should be readable by its owner only, have the `STATIC_KEY` parameter.
+H reads its configuration from the `~/.h` file at initialization.  This file, which should be readable by its owner only, have the salt value.
 
 ## Examples
 
 Generate a digest from the system:
 
-    $ echo "STATIC_KEY=secret" > .env
-    $ h secret
-    X3NlwKecagWCwzeY-tskWNxCotYcxBJMTjDGjeqjk1c=
-    $ h secret 42
-    X3NlwKecagWCwzeY-tskWNxCotYcxBJMTjDGjeqjk1
-    $ h secret 5
-    X3Nlw
+    $ echo "塩" > ~/.h
+    $ h シークレット
+    -q0zMnMSszj8D23a8aNJX_VYry9oSSLZ30XlHkmFt9I=
+    $ h secret 3
+    -q0
 
 Same operation, from Ruby:
 
     irb(main):001:0> require "h"
     true
-    irb(main):002:0> H::Generator.new.input "secret"
-    "X3NlwKecagWCwzeY-tskWNxCotYcxBJMTjDGjeqjk1c="
+    irb(main):002:0> H::Generator.new("塩").input "シークレット", 3
+    "-q0"
 
 To prevent your log display the message as a string, do not specify it at first.
 
     $ h
     Message: ******
-    X3NlwKecagWCwzeY-tskWNxCotYcxBJMTjDGjeqjk1c=
+    -q0zMnMSszj8D23a8aNJX_VYry9oSSLZ30XlHkmFt9I=
 
 ## Code Status
 

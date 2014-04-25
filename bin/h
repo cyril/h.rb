@@ -6,9 +6,9 @@ h = H::Generator.new
 
 result = if ARGV.first
   if ARGV[1]
-    h.input ARGV[0], ARGV[1].to_i
+    h.input ARGV[0].to_s, ARGV[1].to_i
   else
-    h.input ARGV[0]
+    h.input ARGV[0].to_s
   end
 else
   h.prompt
