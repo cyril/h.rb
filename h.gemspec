@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Cyril Wack']
   s.email       = ['contact@cyril.io']
-  s.homepage    = 'https://github.com/cyril/h'
+  s.homepage    = 'https://github.com/cyril/h.rb'
   s.summary     = %q{Salted hashes tool}
   s.description = %q{Small tool that generates salted hashes, scented with the SHA2 function, for those who prefer to put makeup on passwords rather than yield them to Manager™.}
   s.license     = 'ISC'
