@@ -41,8 +41,8 @@ To prevent your log display the message as a string, do not specify it at first.
 
 ## Code Status
 
-* [![Build Status](https://secure.travis-ci.org/cyril/h.png)](http://travis-ci.org/cyril/h)
-* [![Dependencies Status](https://gemnasium.com/cyril/h.png?travis)](https://gemnasium.com/cyril/h)
+* [![Build Status](https://secure.travis-ci.org/cyril/h.rb.png)](http://travis-ci.org/cyril/h.rb)
+* [![Dependency Status](//gemnasium.com/cyril/h.rb.svg)](//gemnasium.com/cyril/h.rb)
 
 * * *
 
