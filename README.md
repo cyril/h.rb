@@ -39,7 +39,7 @@ To prevent your log display the message as a string, do not specify it at first.
     Message: ******
     -q0zMnMSszj8D23a8aNJX_VYry9oSSLZ30XlHkmFt9I=
 
-## Code Status
+## Status
 
 * [![Build Status](https://secure.travis-ci.org/cyril/h.rb.png)](//travis-ci.org/cyril/h.rb)
 * [![Dependency Status](https://gemnasium.com/cyril/h.rb.svg)](//gemnasium.com/cyril/h.rb)
