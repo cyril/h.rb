@@ -38,7 +38,7 @@ module H
     protected
 
     def cryptographic_hash(m)
-      Digest::SHA2.base64digest(m).tr('+/', '-_')
+      Digest::SHA256.base64digest(m).tr('+/', '-_')
     end
 
     def truncate(str, lng)
