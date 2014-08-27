@@ -41,10 +41,11 @@ To prevent your log display the message as a string, do not specify it at first.
 
 ## Status
 
-[![Gem Version](https://badge.fury.io/rb/h.png)](http://badge.fury.io/rb/h)
-[![Build Status](https://secure.travis-ci.org/cyril/h.rb.png)](//travis-ci.org/cyril/h.rb)
-[![Dependency Status](https://gemnasium.com/cyril/h.rb.svg)](//gemnasium.com/cyril/h.rb)
-![](https://ruby-gem-downloads-badge.herokuapp.com/h?type=total)
+* [![Gem Version](https://badge.fury.io/rb/h.png)](http://badge.fury.io/rb/h)
+* [![Build Status](https://secure.travis-ci.org/cyril/h.rb.png)](//travis-ci.org/cyril/h.rb)
+* [![Dependency Status](https://gemnasium.com/cyril/h.rb.svg)](//gemnasium.com/cyril/h.rb)
+* [![Inline docs](http://inch-ci.org/github/cyril/h.rb.png)](http://inch-ci.org/github/cyril/h.rb)
+* ![](https://ruby-gem-downloads-badge.herokuapp.com/h?type=total)
 
 * * *
 
