@@ -1,17 +1,25 @@
 #!/usr/bin/env ruby
 
-require 'h'
+require_relative File.join '..', 'lib', 'h'
 
-h = H::Generator.new
+CONF_PATH = File.join(File.expand_path('~'), '.h')
 
-result = if ARGV.first
-  if ARGV[1]
-    h.input ARGV[0].to_s, ARGV[1].to_i
-  else
-    h.input ARGV[0].to_s
+unless File.exist?(CONF_PATH)
+  print "Creating #{CONF_PATH} file... "
+
+  File.open(CONF_PATH, 'w') do |f|
+    f.write('secret')
   end
-else
-  h.prompt
+
+  File.chmod(0600, CONF_PATH)
+
+  puts 'Done.'
 end
 
-puts result
+h = H::Generator.new(File.open(CONF_PATH).readlines.first.chomp)
+
+puts h.input ARGV[0].to_s,  if ARGV[1].nil?
+                              44
+                            else
+                              ARGV[1].to_i
+                            end

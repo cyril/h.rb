@@ -33,12 +33,6 @@ Same operation, from Ruby:
     irb(main):002:0> H::Generator.new("塩").input "シークレット", 3
     "-q0"
 
-To prevent your log display the message as a string, do not specify it at first.
-
-    $ h
-    Message: ******
-    -q0zMnMSszj8D23a8aNJX_VYry9oSSLZ30XlHkmFt9I=
-
 ## Status
 
 * [![Gem Version](https://badge.fury.io/rb/h.png)](http://badge.fury.io/rb/h)

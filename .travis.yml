@@ -1,4 +1,5 @@
 language: ruby
-script: 'bundle exec rake test'
+script: 'bundle exec rake test:coverage'
 rvm:
-  - 2.1.2
+  - 2.0.0
+  - ruby-head

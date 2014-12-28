@@ -7,11 +7,12 @@ describe H::Generator do
     end
 
     it 'returns a salted hash' do
-      @h.input('').must_equal 'rdOQxxmSfOy-3-HA7OrnqT2Pl2Y_I7Ojqsc1NwVP4sg='
+      @h.input('', 44).must_equal 'rdOQxxmSfOy-3-HA7OrnqT2Pl2Y_I7Ojqsc1NwVP4sg='
     end
 
     it 'returns another salted hash' do
-      @h.input('p@ssw0rd').must_equal 'LCoF25LqK6yFMRs6OoQoZEI4GV4-gR7vd1JZtbi8swA='
+      @h.input('p@ssw0rd', 44).must_equal 'LCoF25LqK6yFMRs6OoQoZEI4GV4-gR7vd1' \
+                                          'JZtbi8swA='
     end
 
     it 'returns a salted hash of 8 chars' do
@@ -25,11 +26,13 @@ describe H::Generator do
     end
 
     it 'returns a different salted hash' do
-      @h.input('p@ssw0rd').wont_equal 'LCoF25LqK6yFMRs6OoQoZEI4GV4-gR7vd1JZtbi8swA='
+      @h.input('p@ssw0rd', 44).wont_equal 'LCoF25LqK6yFMRs6OoQoZEI4GV4-gR7vd1' \
+                                          'JZtbi8swA='
     end
 
     it 'returns a salted hash' do
-      @h.input('シークレット').must_equal '-q0zMnMSszj8D23a8aNJX_VYry9oSSLZ30XlHkmFt9I='
+      @h.input('シークレット', 44).must_equal '-q0zMnMSszj8D23a8aNJX_VYry9oSSLZ30Xl' \
+                                        'HkmFt9I='
     end
 
     it 'returns a salted hash of 3 chars' do
