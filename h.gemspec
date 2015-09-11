@@ -15,9 +15,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(/^test\//)
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler',  '~> 1.7'
-  spec.add_development_dependency 'minitest', '~> 5'
-  spec.add_development_dependency 'rake',     '~> 10'
+  spec.add_development_dependency 'bundler',    '~> 1.8'
+  spec.add_development_dependency 'minitest',   '~> 5'
+  spec.add_development_dependency 'rake',       '~> 10.4'
   spec.add_development_dependency 'yard',       '~> 0.8'
-  spec.add_development_dependency 'coveralls',  '~> 0.7'
+  spec.add_development_dependency 'coveralls',  '~> 0.8'
 end
