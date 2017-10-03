@@ -2,7 +2,7 @@
 
 ## Overview
 
-Small tool that generates salted hashes, scented with the SHA2 function.
+Small tool that generates salted hashes, scented with the SHA-256 hash function.
 
 ## Why?
 
@@ -14,33 +14,41 @@ Small tool that generates salted hashes, scented with the SHA2 function.
 
 ## Configuration
 
-H reads its configuration from the `~/.h` file at initialization.  This file, which should be readable by its owner only, have the salt value.
+H reads its configuration from the `~/.h` file at initialization.
+This file, which should be readable by its owner only, have the salt value.
 
 ## Examples
 
 Generate a digest from the system:
 
-    $ echo "塩" > ~/.h
-    $ h シークレット
-    -q0zMnMSszj8D23a8aNJX_VYry9oSSLZ30XlHkmFt9I=
-    $ h secret 3
-    -q0
+```sh
+$ echo "my-secret" > ~/.h
 
-Same operation, from Ruby:
+$ h p@ssw0rd
+ff665753fe1d26bd6a721760fe3b6623568a9c51962d6bfc9b7fc73d1f1c14d5
 
-    irb(main):001:0> require "h"
-    true
-    irb(main):002:0> H::Generator.new("塩").input "シークレット", 3
-    "-q0"
+$ h シークレット
+069f550ba39da8f87b0229ad5e3d75814c472b1c5a109ff236f9184f49fb3a25
+```
+
+Same operations, with Ruby:
+
+```ruby
+require "h"
+
+builder = H::Builder.new("my-secret")
+
+builder.call("p@ssw0rd") # => ff665753fe1d26bd6a721760fe3b6623568a9c51962d6bfc9b7fc73d1f1c14d5
+builder.call("シークレット") # => 069f550ba39da8f87b0229ad5e3d75814c472b1c5a109ff236f9184f49fb3a25
+```
 
 ## Status
 
 * [![Gem Version](https://badge.fury.io/rb/h.png)](http://badge.fury.io/rb/h)
 * [![Build Status](https://secure.travis-ci.org/cyril/h.rb.png)](//travis-ci.org/cyril/h.rb)
 * [![Dependency Status](https://gemnasium.com/cyril/h.rb.svg)](//gemnasium.com/cyril/h.rb)
-* [![Inline docs](http://inch-ci.org/github/cyril/h.rb.png)](http://inch-ci.org/github/cyril/h.rb)
 * ![](https://ruby-gem-downloads-badge.herokuapp.com/h?type=total)
 
-* * *
+***
 
-Copyright (c) 2014 Cyril Wack, released under the [ISC license](LICENSE.md)
+Copyright (c) 2014 Cyril Kato, released under the [ISC license](LICENSE.md)

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative File.join '..', 'lib', 'h'
+require_relative File.join('..', 'lib', 'h')
 
 CONF_PATH = File.join(File.expand_path('~'), '.h')
 
@@ -16,10 +16,12 @@ unless File.exist?(CONF_PATH)
   puts 'Done.'
 end
 
-h = H::Generator.new(File.open(CONF_PATH).readlines.first.chomp)
+secret  = File.open(CONF_PATH)
+              .readlines
+              .fetch(0)
+              .chomp
 
-puts h.input ARGV[0].to_s,  if ARGV[1].nil?
-                              44
-                            else
-                              ARGV[1].to_i
-                            end
+builder = H::Builder.new(secret)
+result  = builder.call(ARGV[0])
+
+puts result
