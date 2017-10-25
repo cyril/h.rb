@@ -5,17 +5,11 @@ module H
     attr_reader :secret
 
     def initialize(secret)
-      @secret = secret.to_s
+      @secret = secret
     end
 
     def call(value)
-      ::Digest::SHA256.hexdigest(salt(value.to_s))
-    end
-
-    private
-
-    def salt(value)
-      value + secret
+      ::Digest::SHA256.base64digest("#{value}++#{secret}")
     end
   end
 end

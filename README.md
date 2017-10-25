@@ -25,10 +25,10 @@ Generate a digest from the system:
 $ echo "my-secret" > ~/.h
 
 $ h p@ssw0rd
-ff665753fe1d26bd6a721760fe3b6623568a9c51962d6bfc9b7fc73d1f1c14d5
++KsELdbw7gM0e2lQsnCskf1albEXgl9MtXgrmvYkIaM=
 
 $ h シークレット
-069f550ba39da8f87b0229ad5e3d75814c472b1c5a109ff236f9184f49fb3a25
+NaNvnGJGWWzzU9DlRSRKZQQER1/9/libXrrghMgBWbU=
 ```
 
 Same operations, with Ruby:
@@ -38,8 +38,8 @@ require "h"
 
 builder = H::Builder.new("my-secret")
 
-builder.call("p@ssw0rd") # => ff665753fe1d26bd6a721760fe3b6623568a9c51962d6bfc9b7fc73d1f1c14d5
-builder.call("シークレット") # => 069f550ba39da8f87b0229ad5e3d75814c472b1c5a109ff236f9184f49fb3a25
+builder.call("p@ssw0rd") # => +KsELdbw7gM0e2lQsnCskf1albEXgl9MtXgrmvYkIaM=
+builder.call("シークレット") # => NaNvnGJGWWzzU9DlRSRKZQQER1/9/libXrrghMgBWbU=
 ```
 
 ## Status
