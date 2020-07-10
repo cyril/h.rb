@@ -11,7 +11,8 @@ Gem::Specification.new do |spec|
                       'with the SHA2 function, for those who prefer to put ' \
                       'makeup on passwords rather than yield them to Manager™.'
   spec.license      = 'MIT'
-  spec.files        = Dir['LICENSE.md', 'README.md', 'lib/**/*']
+  spec.files        = Dir['LICENSE.md', 'README.md', 'lib/**/*', 'bin/h']
+  spec.executables  = ['h']
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'fix', '~> 1.0.0.beta4'
