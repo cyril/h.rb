@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require_relative File.join('..', 'lib', 'h')
 
@@ -11,7 +12,7 @@ unless File.exist?(CONF_PATH)
     f.write('secret')
   end
 
-  File.chmod(0600, CONF_PATH)
+  File.chmod(600, CONF_PATH)
 
   puts 'Done.'
 end

@@ -1,7 +1,7 @@
 *.gem
 *.rbc
 /.config
-/coverage/
+coverage/
 /InstalledFiles
 /pkg/
 /spec/reports/
@@ -13,6 +13,9 @@
 
 # Used by dotenv library to load environment variables.
 # .env
+
+# Ignore IRB command history file.
+.irb_history
 
 # Ignore Byebug command history file.
 .byebug_history

@@ -1,9 +1,5 @@
-require 'simplecov'
-require 'coveralls'
+# frozen_string_literal: true
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
+require 'simplecov'
 
 SimpleCov.start

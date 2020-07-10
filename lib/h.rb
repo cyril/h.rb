@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 require 'digest/sha2'
 
+# H module.
 module H
+  # Builder class.
   class Builder
     attr_reader :secret
 
