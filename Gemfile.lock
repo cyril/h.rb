@@ -46,7 +46,7 @@ GEM
       defi (~> 2.0.3)
       matchi (~> 2.0.0)
     unicode-display_width (1.7.0)
-    yard (0.9.25)
+    yard (0.9.36)
 
 PLATFORMS
   ruby
