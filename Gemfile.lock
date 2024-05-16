@@ -21,7 +21,8 @@ GEM
     rainbow (3.0.0)
     rake (13.0.1)
     regexp_parser (1.7.1)
-    rexml (3.2.5)
+    rexml (3.2.8)
+      strscan (>= 3.0.9)
     rubocop (0.87.1)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
@@ -45,6 +46,7 @@ GEM
     spectus (3.1.2)
       defi (~> 2.0.3)
       matchi (~> 2.0.0)
+    strscan (3.1.0)
     unicode-display_width (1.7.0)
     yard (0.9.25)
 
