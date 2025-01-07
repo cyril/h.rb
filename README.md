@@ -1,7 +1,5 @@
 # H.rb
 
-[![Build Status](https://travis-ci.org/cyril/h.rb.svg?branch=master)](https://travis-ci.org/cyril/h.rb)
-
 ## Overview
 
 Small tool that generates salted hashes, scented with the SHA-256 hash function.
@@ -21,17 +19,29 @@ This file, which should be readable by its owner only, have the salt value.
 
 ## Examples
 
+Settings:
+
+```sh
+echo "my-secret" > ~/.h
+```
+
 Generate a digest from the system:
 
 ```sh
-$ echo "my-secret" > ~/.h
-
-$ h p@ssw0rd
-+KsELdbw7gM0e2lQsnCskf1albEXgl9MtXgrmvYkIaM=
-
-$ h シークレット
-NaNvnGJGWWzzU9DlRSRKZQQER1/9/libXrrghMgBWbU=
+h p@ssw0rd
 ```
+
+Result:
+
+> `+KsELdbw7gM0e2lQsnCskf1albEXgl9MtXgrmvYkIaM=`
+
+```sh
+h シークレット
+```
+
+Result:
+
+> `NaNvnGJGWWzzU9DlRSRKZQQER1/9/libXrrghMgBWbU=`
 
 Same operations, with Ruby:
 
@@ -43,3 +53,39 @@ builder = H::Builder.new("my-secret")
 builder.call("p@ssw0rd") # => "+KsELdbw7gM0e2lQsnCskf1albEXgl9MtXgrmvYkIaM="
 builder.call("シークレット") # => "NaNvnGJGWWzzU9DlRSRKZQQER1/9/libXrrghMgBWbU="
 ```
+
+## Alternative Implementations
+
+Shell script implementations are available in the `alternatives/` directory:
+
+### Bash Implementation
+
+A POSIX-compliant version focusing on compatibility and security:
+
+```sh
+./alternatives/bash/h.sh p@ssw0rd
+```
+
+Result:
+
+> `+KsELdbw7gM0e2lQsnCskf1albEXgl9MtXgrmvYkIaM=`
+
+### Zsh Implementation
+
+A modern implementation using ZSH-specific features:
+
+```sh
+./alternatives/zsh/h.zsh p@ssw0rd
+```
+
+Result:
+
+> `+KsELdbw7gM0e2lQsnCskf1albEXgl9MtXgrmvYkIaM=`
+
+Both shell implementations:
+- Use the same configuration file (`~/.h`)
+- Provide identical output format
+- Enforce secure file permissions
+- Handle cleanup automatically
+
+See individual READMEs in the `alternatives/` directory for implementation details.

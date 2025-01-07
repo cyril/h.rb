@@ -1,0 +1,132 @@
+#!/usr/bin/env zsh
+
+#
+# H - Secure Hash Generator
+# Usage: h.zsh <string>
+#
+
+# Strict ZSH mode
+setopt ERR_EXIT PIPE_FAIL WARN_CREATE_GLOBAL WARN_NESTED_VAR NO_UNSET
+setopt LOCAL_OPTIONS LOCAL_TRAPS
+setopt EXTENDED_GLOB
+setopt NULL_GLOB
+
+# Disable history
+HISTFILE=/dev/null
+HISTSIZE=0
+SAVEHIST=0
+
+# Restrictive permissions for new files
+umask 077
+
+# Constants
+typeset -r CONF="${HOME}/.h"
+typeset -r REQUIRED_PERMS="600"
+
+# Cleanup handler to clear sensitive variables and temporary files
+cleanup() {
+    local vars=("SECRET" "INPUT" "TEMP_FILE")
+    local var
+    for var in "${vars[@]}"; do
+        if typeset -p "$var" &>/dev/null; then  # Check if variable is set
+            eval "$var=''"                         # Reset the variable
+            unset "$var"                           # Unset the variable
+        fi
+    done
+    [[ -n "${TEMP_FILE:-}" && -f "$TEMP_FILE" ]] && rm -f "$TEMP_FILE"
+}
+
+# Error handler to print message and exit
+die() {
+    local message="$1"
+    print -u2 "Error: $message"
+    cleanup
+    exit 1
+}
+
+# Add traps for cleanup
+trap cleanup EXIT INT TERM
+
+# Check required dependencies
+check_dependencies() {
+    local deps=("openssl" "stat" "mktemp" "base64")
+    local cmd
+    for cmd in "${deps[@]}"; do
+        if ! command -v "$cmd" &>/dev/null; then
+            die "Missing dependency: $cmd"
+        fi
+    done
+}
+
+# Validate file permissions and ownership
+validate_file_permissions() {
+    local file="$1"
+    local perms owner
+
+    # Use stat to get permissions and owner
+    if stat --version &>/dev/null; then
+        # GNU stat (Linux)
+        perms=$(stat -c "%a" "$file")
+        owner=$(stat -c "%U" "$file")
+    else
+        # BSD stat (macOS)
+        perms=$(stat -f "%Lp" "$file")
+        owner=$(stat -f "%Su" "$file")
+    fi
+
+    [[ -L "$file" ]] && die "$file cannot be a symbolic link"
+    [[ -f "$file" ]] || die "$file must be a regular file"
+
+    [[ "$perms" == "$REQUIRED_PERMS" ]] || die "Incorrect permissions on $file"
+    [[ "$owner" == "$USER" ]] || die "$file must belong to $USER"
+}
+
+# Securely initialize the configuration file
+init_config() {
+    local TEMP_FILE
+    TEMP_FILE=$(mktemp) || die "Failed to create a temporary file"
+
+    if ! dd if=/dev/urandom bs=32 count=1 2>/dev/null | base64 | head -c 32 > "$TEMP_FILE"; then
+        die "Failed to generate the secret"
+    fi
+
+    mv "$TEMP_FILE" "$CONF" || die "Failed to create $CONF"
+    chmod 600 "$CONF" || die "Failed to set permissions on $CONF"
+}
+
+# Main hashing function
+generate_hash() {
+    local input="$1"
+    local secret="$2"
+    if [[ -z "$input" ]]; then
+        die "Input string is empty"
+    fi
+    print -n "${input}++${secret}" | openssl dgst -sha256 -binary | base64
+}
+
+# Main function
+main() {
+    local INPUT="$1"
+    local SECRET
+
+    check_dependencies
+
+    # Initialize configuration file if needed
+    [[ -f "$CONF" ]] || init_config
+
+    # Validate configuration file permissions
+    validate_file_permissions "$CONF"
+
+    # Securely load the secret
+    SECRET=$(<"$CONF") || die "Failed to read the configuration file"
+    [[ -n "$SECRET" ]] || die "Configuration file is empty"
+
+    # Generate and print the hash
+    generate_hash "$INPUT" "$SECRET"
+}
+
+# Script entry point
+if (( $# != 1 )); then
+    die "Usage: ${0:t} <string>"
+fi
+main "$1"

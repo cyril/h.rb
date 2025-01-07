@@ -1,20 +1,18 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative File.join('..', 'lib', 'h')
+require_relative File.join("..", "lib", "h")
 
-CONF_PATH = File.join(File.expand_path('~'), '.h')
+CONF_PATH = File.join(File.expand_path("~"), ".h")
 
 unless File.exist?(CONF_PATH)
   print "Creating #{CONF_PATH} file... "
 
-  File.open(CONF_PATH, 'w') do |f|
-    f.write('secret')
-  end
+  File.write(CONF_PATH, "secret")
 
   File.chmod(600, CONF_PATH)
 
-  puts 'Done.'
+  puts "Done."
 end
 
 secret  = File.open(CONF_PATH)

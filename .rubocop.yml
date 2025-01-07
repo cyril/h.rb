@@ -1,80 +1,63 @@
-inherit_from: .rubocop_todo.yml
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1
+
+  Exclude:
+    - '**/*.md'
+    - '**/*.markdown'
+    - 'benchmark/**/*'
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'vendor/**/*'
 
 require:
+  - rubocop-md
   - rubocop-performance
+  - rubocop-rake
   - rubocop-thread_safety
 
-Layout/EmptyLinesAroundAttributeAccessor:
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+# We do not need to support Ruby 1.9, so this is good to use.
+Style/SymbolArray:
   Enabled: true
 
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
+# Most readable form.
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
 
-Lint/RaiseException:
-  Enabled: true
+Layout/LineLength:
+  Exclude:
+    - README.md
+    - benchmark/**/*
 
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
+Metrics/BlockLength:
+  Exclude:
+    - examples/**/*
+    - fix.gemspec
 
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
+Metrics/ParameterLists:
+  Max: 6
 
-Lint/StructNewOverride:
-  Enabled: true
+Naming/FileName:
+  Exclude:
+    - CODE_OF_CONDUCT.md
+    - LICENSE.md
+    - README.md
 
-Style/ExponentialNotation:
-  Enabled: true
+Style/ClassAndModuleChildren:
+  Exclude:
+    - README.md
 
-Style/SlicingWithRange:
-  Enabled: true
+Naming/BlockForwarding:
+  Enabled: false
 
-Style/RedundantRegexpCharacterClass:
-  Enabled: true
-
-Style/RedundantRegexpEscape:
-  Enabled: true
-
-Style/HashEachMethods:
-  Enabled: true
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true
-
-Style/RedundantFetchBlock:
-  Enabled: true
-
-Performance/AncestorsInclude:
-  Enabled: true
-
-Performance/BigDecimalWithNumericArgument:
-  Enabled: true
-
-Performance/RedundantSortBlock:
-  Enabled: true
-
-Performance/RedundantStringChars:
-  Enabled: true
-
-Performance/ReverseFirst:
-  Enabled: true
-
-Performance/SortReverse:
-  Enabled: true
-
-Performance/Squeeze:
-  Enabled: true
-
-Performance/StringInclude:
-  Enabled: true
-
-Style/AccessorGrouping:
-  Enabled: true
-
-Style/BisectedAttrAccessor:
-  Enabled: true
-
-Style/RedundantAssignment:
-  Enabled: true
+Style/ArgumentsForwarding:
+  Enabled: false
