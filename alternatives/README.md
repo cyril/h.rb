@@ -4,7 +4,7 @@ This directory contains alternative implementations of the H hash generator in d
 
 ## Available Implementations
 
-### Bash Implementation (`bash/h.sh`)
+### Bash Implementation (`bash/h`)
 
 A POSIX-compliant implementation focused on maximum compatibility. Features:
 - Works with older versions of bash
@@ -12,7 +12,7 @@ A POSIX-compliant implementation focused on maximum compatibility. Features:
 - Strict error handling with `set -euo pipefail`
 - Memory-safe operations and cleanup
 
-### ZSH Implementation (`zsh/h.zsh`)
+### ZSH Implementation (`zsh/h`)
 
 A modern implementation leveraging ZSH-specific features. Features:
 - Advanced error handling with ZSH options
@@ -41,7 +41,7 @@ Both implementations provide:
 
 1. Choose your preferred implementation
 2. Copy the script to your desired location
-3. Make it executable: `chmod +x h.sh` or `chmod +x h.zsh`
+3. Make it executable: `chmod +x h` or `chmod +x h`
 4. (Optional) Create a symlink in your PATH
 
 ## Usage
@@ -50,10 +50,10 @@ Both implementations follow the same usage pattern:
 
 ```bash
 # Bash version
-./h.sh "your string"
+./h "your string"
 
 # ZSH version
-./h.zsh "your string"
+./h "your string"
 ```
 
 The first run will create a secure configuration file at `~/.h`.

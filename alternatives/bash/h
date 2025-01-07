@@ -2,7 +2,7 @@
 
 #
 # H - Secure Hash Generator
-# Usage: h.sh <string>
+# Usage: h <string>
 #
 
 # Exit on errors, unset variables, and pipe failures
@@ -91,22 +91,14 @@ init_config() {
 generate_hash() {
     local input="$1"
     local secret="$2"
-    if [[ -z "$input" ]]; then
-        die "Input string is empty"
-    fi
     printf "%s++%s" "$input" "$secret" | openssl dgst -sha256 -binary | base64
-}
-
-# Argument validation function
-check_arguments() {
-    if [[ $# -ne 1 ]]; then
-        die "Usage: ${0##*/} <string>"
-    fi
-    INPUT="$1"
 }
 
 # Main function
 main() {
+    # Use an empty string if no argument is provided
+    local input="${1:-}"
+
     check_dependencies
 
     # Initialize configuration file if needed
@@ -116,13 +108,13 @@ main() {
     validate_file_permissions "$CONF"
 
     # Securely load the secret
-    SECRET=$(<"$CONF") || die "Failed to read the configuration file"
-    [[ -n "$SECRET" ]] || die "Configuration file is empty"
+    local secret
+    secret=$(<"$CONF") || die "Failed to read the configuration file"
+    [[ -n "$secret" ]] || die "Configuration file is empty"
 
     # Generate and print the hash
-    generate_hash "$INPUT" "$SECRET"
+    generate_hash "$input" "$secret"
 }
 
 # Script entry point
-check_arguments "$@"
-main
+main "$@"

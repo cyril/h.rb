@@ -63,7 +63,7 @@ Shell script implementations are available in the `alternatives/` directory:
 A POSIX-compliant version focusing on compatibility and security:
 
 ```sh
-./alternatives/bash/h.sh p@ssw0rd
+./alternatives/bash/h p@ssw0rd
 ```
 
 Result:
@@ -75,7 +75,7 @@ Result:
 A modern implementation using ZSH-specific features:
 
 ```sh
-./alternatives/zsh/h.zsh p@ssw0rd
+./alternatives/zsh/h p@ssw0rd
 ```
 
 Result:

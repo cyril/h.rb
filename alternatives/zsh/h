@@ -2,7 +2,7 @@
 
 #
 # H - Secure Hash Generator
-# Usage: h.zsh <string>
+# Usage: h [string]
 #
 
 # Strict ZSH mode
@@ -28,9 +28,9 @@ cleanup() {
     local vars=("SECRET" "INPUT" "TEMP_FILE")
     local var
     for var in "${vars[@]}"; do
-        if typeset -p "$var" &>/dev/null; then  # Check if variable is set
-            eval "$var=''"                         # Reset the variable
-            unset "$var"                           # Unset the variable
+        if typeset -p "$var" &>/dev/null; then
+            eval "$var=''" # Reset the variable
+            unset "$var"   # Unset the variable
         fi
     done
     [[ -n "${TEMP_FILE:-}" && -f "$TEMP_FILE" ]] && rm -f "$TEMP_FILE"
@@ -98,15 +98,13 @@ init_config() {
 generate_hash() {
     local input="$1"
     local secret="$2"
-    if [[ -z "$input" ]]; then
-        die "Input string is empty"
-    fi
     print -n "${input}++${secret}" | openssl dgst -sha256 -binary | base64
 }
 
 # Main function
 main() {
-    local INPUT="$1"
+    # Use an empty string if no argument is provided
+    local INPUT="${1:-}"
     local SECRET
 
     check_dependencies
@@ -126,7 +124,4 @@ main() {
 }
 
 # Script entry point
-if (( $# != 1 )); then
-    die "Usage: ${0:t} <string>"
-fi
-main "$1"
+main "$@"
