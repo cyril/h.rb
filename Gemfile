@@ -5,7 +5,7 @@ source "https://rubygems.org"
 gemspec
 
 gem "bundler"
-gem "fix"
+gem "fix", "0.21"
 gem "rake"
 gem "rubocop-md"
 gem "rubocop-performance"
