@@ -1,68 +1,42 @@
 # Alternative Implementations
 
-This directory contains alternative implementations of the H hash generator in different shell languages.
+This directory contains alternative implementations of the H hash generator in different languages.
 
 ## Available Implementations
 
+### Python Implementation (`python/h`)
+A modern implementation focusing on cross-platform compatibility:
+```sh
+./python/h p@ssw0rd
+```
+
 ### Bash Implementation (`bash/h`)
+A POSIX-compliant implementation focusing on security:
+```sh
+./bash/h p@ssw0rd
+```
 
-A POSIX-compliant implementation focused on maximum compatibility. Features:
-- Works with older versions of bash
-- No external dependencies beyond core utils and OpenSSL
-- Strict error handling with `set -euo pipefail`
-- Memory-safe operations and cleanup
-
-### ZSH Implementation (`zsh/h`)
-
-A modern implementation leveraging ZSH-specific features. Features:
-- Advanced error handling with ZSH options
-- Better variable scoping and type checking
-- More robust cleanup procedures
-- Improved file handling
+### Zsh Implementation (`zsh/h`)
+An implementation leveraging ZSH-specific features:
+```sh
+./zsh/h p@ssw0rd
+```
 
 ## Common Features
 
-Both implementations provide:
-- Secure secret generation and storage
-- File permission validation
-- Dependency checking
-- Secure memory cleanup
-- Cross-platform compatibility (Linux/BSD/macOS)
-
-## Security Considerations
-
-- Both scripts enforce strict file permissions (600)
-- Memory is cleaned after use
-- Temporary files are handled securely
-- Symbolic links are rejected
-- Input validation is performed
-
-## Installation
-
-1. Choose your preferred implementation
-2. Copy the script to your desired location
-3. Make it executable: `chmod +x h` or `chmod +x h`
-4. (Optional) Create a symlink in your PATH
+All implementations:
+- Use the same configuration file (`~/.h`)
+- Provide identical output format
+- Enforce secure file permissions (600)
+- Handle cleanup automatically
+- Support cross-platform usage (Linux/BSD/macOS)
+- Enforce secure memory management
 
 ## Usage
 
-Both implementations follow the same usage pattern:
-
-```bash
-# Bash version
-./h "your string"
-
-# ZSH version
-./h "your string"
-```
+1. Choose your preferred implementation
+2. (Optional) Create a symlink in your PATH
 
 The first run will create a secure configuration file at `~/.h`.
 
-## Differences from Main Implementation
-
-These alternatives provide:
-- Enhanced security features
-- More explicit error handling
-- Additional input validation
-- Improved cleanup procedures
-- Platform-specific optimizations
+See individual implementation directories for specific details.

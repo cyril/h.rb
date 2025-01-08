@@ -1,0 +1,79 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import hashlib
+import base64
+import stat
+from pathlib import Path
+
+class HashBuilder:
+    """Handles the creation of salted password hashes using SHA-256."""
+
+    def __init__(self, secret):
+        """Initialize a new Builder with a secret salt.
+
+        Args:
+            secret: The salt to use for hashing (will be converted to string)
+        """
+        self._secret = str(secret)
+
+    @property
+    def secret(self):
+        """Return the secret salt used for hashing."""
+        return self._secret
+
+    def __call__(self, value):
+        """Generate a salted hash of the provided value.
+
+        Args:
+            value: The value to hash
+
+        Returns:
+            str: Base64 encoded SHA-256 hash
+        """
+        combined = f"{value}++{self._secret}"
+        hash_bytes = hashlib.sha256(combined.encode()).digest()
+        return base64.b64encode(hash_bytes).decode()
+
+def create_config_file(conf_path):
+    """Create and initialize the configuration file with proper permissions.
+
+    Args:
+        conf_path: Path object for the configuration file
+    """
+    print(f"Creating {conf_path} file... ", end="", flush=True)
+
+    # Write without newline
+    with open(conf_path, 'w') as f:
+        f.write("secret")
+
+    # Set file permissions to 600 (user read/write only)
+    os.chmod(conf_path, 0o600)
+
+    print("Done.")
+
+def main():
+    """Main function to handle the hash generation process."""
+    # Set up configuration path
+    conf_path = Path.home() / ".h"
+
+    # Create config file if it doesn't exist
+    if not conf_path.exists():
+        create_config_file(conf_path)
+
+    # Read secret and remove newline (equivalent to Ruby's chomp)
+    with open(conf_path, 'r') as f:
+        secret = f.read().rstrip('\n')
+
+    # Use empty string if no argument is provided
+    input_value = sys.argv[1] if len(sys.argv) > 1 else ""
+
+    # Create builder and generate hash
+    builder = HashBuilder(secret)
+    result = builder(input_value)
+
+    print(result)
+
+if __name__ == "__main__":
+    main()
